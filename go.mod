@@ -1,3 +1,3 @@
-module github.com/MjhX/pokedexgo
+module github.com/MjhX/pokedex
 
 go 1.24.3
