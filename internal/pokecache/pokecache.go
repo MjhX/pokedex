@@ -49,6 +49,7 @@ func (c Cache) Get(key string) ([]byte, bool) {
 func (c Cache) reapLoop() {
 	ticker := time.NewTicker(c.interval)
 	go func() {
+		time.Sleep(c.interval)
 		for range ticker.C {
 			expiry := time.Now().Add(-c.interval)
 			c.mu.Lock()
@@ -61,6 +62,5 @@ func (c Cache) reapLoop() {
 		}
 	}()
 
-	time.Sleep(c.interval)
-	ticker.Stop()
+	ticker.Reset(c.interval)
 }
